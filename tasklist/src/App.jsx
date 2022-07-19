@@ -25,11 +25,20 @@ function App() {
       }
   ]);
 
+  //Delete task
+  const deleteTask = (id) => {
+    console.log("Delete", id);
+    setTasks(tasks.filter((item) => item.id !== id));
+  }
+
+  const onToggle = (id) => {
+    setTasks(tasks.map((item) => item.id === id ? {...item, done: !item.done} : item));
+  }
 
   return (
     <div className="container">
       <Header />
-      <Tasks tasks={ tasks }/>
+      { tasks.length > 0 ? <Tasks tasks={ tasks } onDelete={ deleteTask } onToggle= { onToggle }/> : ("You have 0 tasks") }
     </div>
   );
 }
