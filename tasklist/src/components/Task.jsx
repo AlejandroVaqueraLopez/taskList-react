@@ -1,11 +1,14 @@
 import { FaTimes } from "react-icons/fa";
+import Button from "./Button";
 
-const Task = ({ text, date }) => {
+const Task = ({ task, onDelete, onToggle }) => {
+    const {id, text, date} = task;
     return (
-        <li className="task">
+        <li className={ `task ${task.done ? "terminado" : ""}` }>
             <h4>{ text }</h4>
             <p>{ date }</p>
-            <FaTimes style={{ cursor: "pointer" }}/>
+            <Button text={ "Done" } background={ "orange" } onToggle={ onToggle } id={ id } />
+            <FaTimes style={{ cursor: "pointer" }} onClick={ () => onDelete(id) }/>
         </li>
     );
 }
