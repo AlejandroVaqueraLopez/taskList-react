@@ -53,7 +53,8 @@ function App() {
   return (
     <div className="container">
       <Header />
-      { showAddTask ? <><AddTask onAdd={ addTask }/> <ButtonView text={"Close add form"} onShow={ onShow } bg={"red"} /></>: <ButtonView text={"Add new task"} onShow={ onShow } bg={"green"} /> }
+      { showAddTask ? <AddTask onAdd={ addTask }/> : ("") }
+      { <ButtonView text={ showAddTask ? "Close add form" : "Add new task" } onShow={ onShow } bg={ showAddTask ? "red" : "green"} /> }
       { tasks.length > 0 ? <Tasks tasks={ tasks } onDelete={ deleteTask } onToggle= { onToggleTask }/> : ("You have 0 tasks") }
     </div>
   );
